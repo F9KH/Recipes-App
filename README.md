@@ -1,4 +1,4 @@
 ## Rcipes App Screenshot:
 
-![img](webImg .jpg)
+![img](img.jpg)
 
