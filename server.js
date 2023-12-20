@@ -4,14 +4,15 @@ const path = require('path');
 
 const app = express();
 
-app.use(express.json());
-app.use(express.urlencoded({ extended: false }));
 app.use(express.static(path.join(__dirname, 'dist')));
 app.use(express.static(path.join(__dirname, 'node_modules')));
 app.use(express.static('public'));
+app.use(express.json());
+app.use(express.urlencoded({ extended: false }));
 
 const dairyIngredients = ["cream", "cheese", "milk", "butter", "creme", "ricotta", "mozzarella", "custard", "cream cheese", "condensed milk", "heavy cream"];
 const glutenIngredients = ["flour", "bread", "spaghetti", "biscuits", "beer"];
+const unvegetarianIngredients = ["red snapper","chicken stock","lamb loin chops", "chicken thighs", "salmon", "chicken", "beef", "pork", "fish", "shrimp", "lamb", "bacon", "sausage", "cream", "cheese", "milk", "butter", "creme", "ricotta", "mozzarella", "custard", "cream cheese", "condensed milk", "heavy cream"];
 
 app.get('/', (req, res) => {
   res.end();
@@ -28,6 +29,7 @@ app.get('/recipes/:ingredient', async (req, res) => {
     
     const glutenFree = req.query.glutenFree === 'true';
     const dairyFree = req.query.dairyFree === 'true';
+    const unvegetarianFree = req.query.unvegetarianFree === 'true';
 
     const filteredRecipes = recipes.filter(recipe => {
       if (glutenFree && recipeContainsGluten(recipe)) { 
@@ -35,6 +37,10 @@ app.get('/recipes/:ingredient', async (req, res) => {
       }
 
       if (dairyFree && recipeContainsDairy(recipe)) {
+        return false;
+      }
+
+      if (unvegetarianFree && recipeContainsUnvegetarian(recipe)) {
         return false;
       }
 
@@ -58,6 +64,11 @@ function recipeContainsDairy(recipe) {
   return ingredients.some(ingredient => dairyIngredients.includes(ingredient));
 }
 
+function recipeContainsUnvegetarian(recipe) {
+  const ingredients = recipe.ingredients.map(ingredient => ingredient.toLowerCase());
+  return ingredients.some(ingredient => unvegetarianIngredients.includes(ingredient));
+}
+
 const filtered = function (arr) {
   return arr.map(recipe => ({
     title: recipe.title,
@@ -65,17 +76,7 @@ const filtered = function (arr) {
     href: recipe.href,
     ingredients: recipe.ingredients
   }));
-
-  $(".recipe-container img").on("click", function () {
-    const index = $(this).closest(".recipe-container").index();
-    const recipes = recipes[index];
-  
-    const firstIngredient = recipes.ingredients[0];
-    alert(`First Ingredient: ${firstIngredient}`);
-  });
 }
-
-
 
 const PORT = 5000;
 app.listen(PORT, () => {

@@ -1,22 +1,17 @@
 const renderer = new Render();
 
 function searchRecipes() {
-  let ingredient = $('#searchInput').val();
-  const dairy = $('#diaryFree').is(":checked");
-  const gluten = $('#glutenFree').is(":checked");
+    const ingredient = $('#searchInput').val();
+    const dairy = $('#diaryFree').is(":checked");
+    const gluten = $('#glutenFree').is(":checked");
+    const vegetarian = $('#unvegetarianFree').is(":checked");
 
-  $.getJSON(`/recipes/${ingredient}?dairyFree=${dairy}&glutenFree=${gluten}`)
-    .then((recipes) => {
-      renderer.display(recipes);
+    const url = `/recipes/${ingredient}?dairyFree=${dairy}&glutenFree=${gluten}&unvegetarianFree=${vegetarian}`;
 
-      $("#recipe-container img").on("click", function () {
-        const index = $(this).closest(".recipe-container").index();
-        const recipe = recipes[index];
-
-        alert(`First Ingredient: ${firstIngredient}`);
-      });
-    })
-    .catch((error) => {
-      console.error(error);
+    $.getJSON(url).then((recipes) => {
+        recipes.unvegetarianFree = vegetarian;
+        renderer.display(recipes);
     });
-}
+
+  }
+

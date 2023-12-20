@@ -87,5 +87,11 @@ h1 {
     }
 }
 
+#vegetarian-icon{
+    height: 90px;
+    width: 90px;
+    animation: dance 1s ease-in-out infinite;
+
+}
 
 
