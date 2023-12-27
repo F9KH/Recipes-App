@@ -34,17 +34,6 @@
 }
 
 
-/* h1 {
-    color: forestgreen;
-    font: italic small-caps bold 50px/2 cursive;    
-    font-weight: 300;
-    font-size: 40px;
-    text-shadow: 2px 2px 4px rgb(0, 0, 0); /* Adjust the values as needed */
-
-
-
-
-
 header {
     background-image: url('https://hangrychefblog.files.wordpress.com/2017/03/cooking-header.jpeg?w=1200');
     background-size: cover; 
@@ -94,4 +83,31 @@ h1 {
 
 }
 
+#chef-name{
+    font-family: Georgia, serif;
+    color:orangered;
+    
+}
 
+.box-row{
+    height: 20px;
+}
+
+#rating-str{
+    font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    font-weight : 900;
+}
+@media screen and (max-width: 768px) {
+    .recipe-container {
+        width: calc(50% - 20px);
+    }
+}
+
+@media screen and (max-width: 480px) {
+    .recipe-container {
+        width: calc(100% - 20px);
+    }
+}
+
+
+  

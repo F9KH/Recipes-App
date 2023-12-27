@@ -1,10 +1,12 @@
-const renderer = new Render();
+const renderer = new Renderer();
+
 
 function searchRecipes() {
     const ingredient = $('#searchInput').val();
     const dairy = $('#diaryFree').is(":checked");
     const gluten = $('#glutenFree').is(":checked");
     const vegetarian = $('#unvegetarianFree').is(":checked");
+    
 
     const url = `/recipes/${ingredient}?dairyFree=${dairy}&glutenFree=${gluten}&unvegetarianFree=${vegetarian}`;
 
@@ -13,5 +15,20 @@ function searchRecipes() {
         renderer.display(recipes);
     });
 
-  }
+    $(".share-email-btn").on("click", function () {
+        const title = $(this).data("title");
+        const link = $(this).data("link");
+        const emailSubject = `Check out this recipe! ${title}`;
+        const emailBody = `You can see the recipe in this video: ${link}`;
+        const mailtoLink =` mailto:?subject=${encodeURIComponent(emailSubject)}&body=${encodeURIComponent(emailBody)}`;
+        window.location.href = mailtoLink;
+    });
+  
+}
+
+
+
+
+
+  
 
