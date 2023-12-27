@@ -37,6 +37,35 @@
         </div>
     </header>
 
+    <nav aria-label="Page navigation example">
+        <ul class="pagination">
+            <li class="page-item" id="previousPageBtn">
+                <a class="page-link" href="#" aria-label="Previous">
+                    <span aria-hidden="true">&laquo;</span>
+                    <span class="sr-only">Previous</span>
+                </a>
+            </li>
+
+            <!-- You can dynamically generate page numbers based on the total number of pages -->
+            <!-- For simplicity, let's assume a maximum of 10 pages -->
+            <li class="page-item" id="page1"><a class="page-link" href="#">1</a></li>
+            <li class="page-item" id="page2"><a class="page-link" href="#">2</a></li>
+            <li class="page-item" id="page3"><a class="page-link" href="#">3</a></li>
+            <li class="page-item" id="page4"><a class="page-link" href="#">4</a></li>
+            <li class="page-item" id="page5"><a class="page-link" href="#">5</a></li>
+
+            <li class="page-item" id="nextPageBtn">
+                <a class="page-link" href="#" aria-label="Next">
+                    <span aria-hidden="true">&raquo;</span>
+                    <span class="sr-only">Next</span>
+                </a>
+            </li>
+        </ul>
+    </nav>
+
+
+
+
     <script id="recipe-template" type="text/x-handlebars-template">
         {{#each recipes}}
              
