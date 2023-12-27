@@ -19,7 +19,6 @@ class Renderer {
             $(this).append(`<p id="chef-name">Chef : ${chefName}</p>`);
             $(this).append(`<p id="rating-str">Rating : ${'⭐'.repeat(rating)}</p>`);
         });
-        
 
     }
 
